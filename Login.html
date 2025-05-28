@@ -1,11 +1,150 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    
-</body>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Halaman Masuk</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Port+Lligat+Slab&family=Poppins:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: #ffffff;
+        margin: 0;
+        font-family: "Poppins", sans-serif;
+      }
+
+      .login-container {
+        padding: 40px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        max-width: 500px;
+        width: 100%;
+        background: #e7d6ef;
+        backdrop-filter: blur(10px);
+      }
+
+      .login-container h2 {
+        font-family: "Port Lligat Slab", serif;
+        text-align: center;
+        font-size: 36px;
+        color: #511f52;
+        margin-bottom: 20px;
+      }
+
+      form {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 10px;
+      }
+
+      label {
+        margin: 8px 0 4px;
+        color: #333;
+      }
+
+      input[type="email"],
+      input[type="password"] {
+        width: 100%;
+        padding: 12px;
+        margin: 8px 0;
+        border-radius: 10px;
+        border: 2px solid #102c57;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        transition: border-color 0.3s, box-shadow 0.3s;
+      }
+
+      input:focus {
+        border-color: #088395;
+        box-shadow: 0 0 5px rgba(0, 136, 149, 0.5);
+        outline: none;
+      }
+
+      .btn-login {
+        width: 100%;
+        background-color: #46315c;
+        color: white;
+        padding: 12px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+        margin-top: 30px;
+        transition: background-color 0.3s;
+      }
+
+      .btn-login:hover {
+        background-color: #511f52;
+      }
+
+      .login-link,
+      .home-link {
+        text-align: center;
+        margin-top: 10px;
+        font-size: 20px;
+      }
+
+      a {
+        color: #511f52;
+        text-decoration: none;
+        transition: color 0.3s;
+      }
+
+      a:hover {
+        text-decoration: underline;
+        color: #007b7b;
+      }
+
+      .show-password {
+        display: inline-block;
+        margin-top: -8px;
+        margin-bottom: 10px;
+        cursor: pointer;
+        color: #511f52;
+        font-size: 14px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="login-container">
+      <h2>Masuk</h2>
+      <form action="login.html" method="POST">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="alamat_email" required />
+
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" required />
+        <span class="show-password" onclick="togglePassword()">Tampilkan</span>
+
+        <button type="submit" class="btn-login">Masuk</button>
+      </form>
+
+      <div class="login-link">
+        <a href="register.html">Belum punya akun? Daftar</a>
+      </div>
+      <div class="home-link">
+        <a href="index.html">← Kembali ke Beranda</a>
+      </div>
+    </div>
+
+    <script>
+      function togglePassword() {
+        const password = document.getElementById("password");
+        const toggleText = document.querySelector(".show-password");
+
+        if (password.type === "password") {
+          password.type = "text";
+          toggleText.textContent = "Sembunyikan";
+        } else {
+          password.type = "password";
+          toggleText.textContent = "Tampilkan";
+        }
+      }
+    </script>
+  </body>
 </html>

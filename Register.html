@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Halaman Daftar</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Port+Lligat+Slab&family=Poppins:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}" />
+    <!-- Panggil file CSS eksternal -->
+    <style>
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: #ffffff;
+        margin: 0;
+      }
+
+      .register-container {
+        padding: 40px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        max-width: 500px;
+        width: 100%;
+        background: #e7d6ef;
+        /* Tambahkan latar belakang transparan */
+        backdrop-filter: blur(10px);
+        /* Blur latar belakang */
+      }
+
+      .register-container h2 {
+        font-family: "Port Lligat Slab", serif;
+        text-align: center;
+        font-size: 36px;
+        color: #511f52;
+        margin-bottom: 20px;
+      }
+
+      form {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 10px;
+      }
+
+      label {
+        display: block;
+        margin: 8px 0 4px;
+        color: #333;
+        /* Warna label */
+      }
+
+      input[type="text"],
+      input[type="password"],
+      input[type="email"] {
+        width: 100%;
+        padding: 12px;
+        margin: 8px 0;
+        border-radius: 10px;
+        border: 2px solid #102c57;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        transition: border-color 0.3s, box-shadow 0.3s;
+        /* Animasi saat fokus */
+      }
+
+      input:focus {
+        border-color: #088395;
+        /* Ubah warna border saat fokus */
+        box-shadow: 0 0 5px rgba(0, 136, 149, 0.5);
+        /* Tambahkan efek bayangan saat fokus */
+        outline: none;
+        /* Hilangkan outline default */
+      }
+
+      .btn-register {
+        width: 100%;
+        background-color: #46315c;
+        color: white;
+        padding: 12px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+        margin-top: 30px;
+        transition: background-color 0.3s;
+        /* Animasi saat hover */
+      }
+
+      .btn-register:hover {
+        background-color: #511f52;
+        /* Ubah warna saat hover */
+      }
+
+      .login-link {
+        text-align: center;
+        margin-top: 10px;
+        font-size: 20px;
+      }
+
+      .home-link {
+        text-align: center;
+        /* margin-top: 5px; */
+        font-size: 20px;
+      }
+
+      .login-link a {
+        color: #511f52;
+        text-decoration: none;
+        transition: color 0.3s;
+      }
+
+      .home-link a {
+        color: #511f52;
+        text-decoration: none;
+        transition: color 0.3s;
+        /* Animasi saat hover */
+      }
+
+      .login-link a:hover {
+        text-decoration: underline;
+        color: #007b7b;
+      }
+
+      .home-link a:hover {
+        text-decoration: underline;
+        color: #007b7b;
+        /* Ubah warna saat hover */
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="register-container">
+      <h2>Daftar</h2>
+      <form method="POST" action="{{ route('register') }}">
+        <div>
+          <label for="nama_lengkap">Nama Lengkap:</label>
+          <input
+            type="text"
+            id="nama_lengkap"
+            name="nama_lengkap"
+            placeholder="Nama Lengkap"
+            required
+          />
+        </div>
+        <div>
+          <label for="nomor_telp">Nomor Telepon:</label>
+          <input
+            type="text"
+            id="nomor_telp"
+            name="nomor_telp"
+            placeholder="Nomor Telepon"
+            required
+          />
+        </div>
+        <div>
+          <label for="alamat_email">Alamat Email:</label>
+          <input
+            type="email"
+            id="alamat_email"
+            name="alamat_email"
+            placeholder="Alamat Email"
+            required
+          />
+        </div>
+        <div>
+          <label for="password">Password:</label>
+          <small class="text-muted"
+            >Password harus terdiri dari minimal 8 karakter.</small
+          >
+          <input
+            type="password"
+            id="password"
+            name="password"
+            placeholder="Password"
+            required
+          />
+        </div>
+        <div>
+          <label for="konfirmasi_password">Konfirmasi Password:</label>
+          <input
+            type="password"
+            id="konfirmasi_password"
+            name="password_confirmation"
+            placeholder="Konfirmasi Password"
+            required
+          />
+        </div>
+        <button type="submit" class="btn-register">Daftar</button>
+
+        <div class="login-link">
+          <span>Sudah Memiliki Akun?</span>
+          <a href="{'login.html'}">Masuk</a>
+        </div>
+        <div class="home-link">
+          <a href="{{ url('home') }}">Kembali ke Beranda</a>
+        </div>
+      </form>
+    </div>
+  </body>
+</html>
