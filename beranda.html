@@ -98,16 +98,30 @@
       }
 
       .upload-box {
-        background-color: #ddd;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 30px;
+        border: 2px dashed #511f52;
         border-radius: 10px;
-        padding: 40px 20px;
-        font-weight: bold;
+        cursor: pointer;
+        background-color: #f9f0ff;
+        color: #511f52;
+        font-size: 18px;
+        transition: background-color 0.3s;
       }
 
-      .upload-box span {
-        display: block;
-        font-size: 24px;
-        margin-bottom: 10px;
+      .upload-box:hover {
+        background-color: #f0dfff;
+      }
+
+      #preview-container img {
+        margin-top: 20px;
+        max-width: 100%;
+        height: auto;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
       }
 
       .template-box img {
@@ -126,8 +140,10 @@
       <div class="title">Ayo Buat Desain MU!!</div>
 
       <div class="button-group">
-        <button>Sudah memiliki desain</button>
-        <button>Belum memiliki desain</button>
+        <a href="Desain.html"><button>Mulai Mendesain</button> </a>
+        <a href="Template.html"
+          ><button type="button">Belum memiliki desain</button></a
+        >
         <button>Konsultasi Desainer</button>
       </div>
 
@@ -135,29 +151,57 @@
         <!-- Pilihan Template -->
         <div class="template-box">
           <div class="option-grid">
-            <div>A</div>
-            <div>B</div>
-            <div>C</div>
-            <div>D</div>
+            <div>
+              <img src="dete/hoodie mockup.png" alt="hoodie" />
+            </div>
+            <div>
+              <img src="dete/celana mockup.png" alt="celana" />
+            </div>
+            <div>
+              <img src="dete/polo mockup.png" alt="polo" />
+            </div>
+            <div>
+              <img src="dete/totebag mockup.png" alt="totebag" />
+            </div>
           </div>
         </div>
 
         <!-- Upload Box -->
         <div class="template-box">
-          <div class="upload-box">
+          <label for="imageUpload" class="upload-box">
             <span>⬆️</span>
             Upload Desain mu
-          </div>
+          </label>
+          <input
+            type="file"
+            id="uploadInput"
+            accept="image/*"
+            style="display: none"
+            onchange="previewImage(event)"
+          />
+          <div id="preview-container"></div>
         </div>
 
         <!-- Gambar Baju -->
         <div class="template-box">
-          <img
-            src="5bbe30a9-776b-4c0c-9a3f-d29dac054002.png"
-            alt="Jersey Desain"
-          />
+          <img src="dete/kaos mockup.png" alt="Kaos Desain" class="kaos" />
         </div>
       </div>
     </div>
+    <script>
+      function handleUpload(event) {
+        const file = event.target.files[0];
+        if (!file) return;
+
+        const reader = new FileReader();
+        reader.onload = function (e) {
+          // Simpan gambar dalam format base64 ke localStorage
+          localStorage.setItem("uploadedImage", e.target.result);
+          // Pindah ke halaman mendesain
+          window.location.href = "mendesain.html";
+        };
+        reader.readAsDataURL(file);
+      }
+    </script>
   </body>
 </html>

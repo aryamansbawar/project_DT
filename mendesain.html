@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Editor Desain</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        margin: 0;
+        font-family: "Poppins", sans-serif;
+        background-color: #f3e9ff;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 20px;
+      }
+
+      h1 {
+        color: #511f52;
+        margin-bottom: 10px;
+      }
+
+      #editor {
+        position: relative;
+        width: 100%;
+        max-width: 600px;
+        height: 500px;
+        border: 2px dashed #511f52;
+        background-color: white;
+        overflow: hidden;
+        border-radius: 10px;
+        margin-bottom: 20px;
+      }
+
+      #uploaded-image {
+        position: absolute;
+        max-width: 100%;
+        max-height: 100%;
+        cursor: move;
+      }
+
+      .text-box {
+        position: absolute;
+        background-color: rgba(255, 255, 255, 0.7);
+        color: #000;
+        padding: 4px 8px;
+        border-radius: 4px;
+        cursor: move;
+        font-size: 18px;
+        font-weight: bold;
+        border: 1px dashed #511f52;
+      }
+
+      .controls {
+        margin-bottom: 20px;
+      }
+
+      input[type="text"],
+      input[type="color"],
+      input[type="number"] {
+        padding: 6px;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        margin-right: 10px;
+      }
+
+      .btn {
+        padding: 8px 16px;
+        font-size: 16px;
+        background-color: #46315c;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+
+      .btn:hover {
+        background-color: #511f52;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Edit Desainmu</h1>
+
+    <div class="controls">
+      <input type="text" id="inputText" placeholder="Tambahkan teks..." />
+      <input type="color" id="textColor" title="Pilih warna teks" />
+      <input
+        type="number"
+        id="fontSize"
+        min="12"
+        max="72"
+        value="18"
+        title="Ukuran font (px)"
+      />
+      <button class="btn" onclick="addText()">Tambah Teks</button>
+      <button class="btn" onclick="selesai()">Selesai</button>
+    </div>
+
+    <div id="canvas-area">
+      <img
+        id="uploadedImagePreview"
+        alt="Desain Anda"
+        style="max-width: 100%; display: block"
+      />
+    </div>
+
+    <script>
+      const image = localStorage.getItem("uploadedImage");
+      const imgElement = document.getElementById("uploaded-image");
+      const editor = document.getElementById("editor");
+
+      if (image) {
+        imgElement.src = image;
+      }
+
+      dragElement(imgElement);
+
+      function addText() {
+        const text = document.getElementById("inputText").value.trim();
+        const color = document.getElementById("textColor").value;
+        const size = document.getElementById("fontSize").value;
+
+        if (text === "") return;
+
+        const textBox = document.createElement("div");
+        textBox.className = "text-box";
+        textBox.innerText = text;
+        textBox.style.left = "20px";
+        textBox.style.top = "20px";
+        textBox.style.color = color;
+        textBox.style.fontSize = size + "px";
+        editor.appendChild(textBox);
+
+        dragElement(textBox);
+        document.getElementById("inputText").value = "";
+      }
+
+      function dragElement(elmnt) {
+        let pos1 = 0,
+          pos2 = 0,
+          pos3 = 0,
+          pos4 = 0;
+
+        elmnt.onmousedown = dragMouseDown;
+
+        function dragMouseDown(e) {
+          e = e || window.event;
+          e.preventDefault();
+          pos3 = e.clientX;
+          pos4 = e.clientY;
+          document.onmouseup = closeDragElement;
+          document.onmousemove = elementDrag;
+        }
+
+        function elementDrag(e) {
+          e = e || window.event;
+          e.preventDefault();
+          pos1 = pos3 - e.clientX;
+          pos2 = pos4 - e.clientY;
+          pos3 = e.clientX;
+          pos4 = e.clientY;
+          elmnt.style.top = elmnt.offsetTop - pos2 + "px";
+          elmnt.style.left = elmnt.offsetLeft - pos1 + "px";
+        }
+
+        function closeDragElement() {
+          document.onmouseup = null;
+          document.onmousemove = null;
+        }
+      }
+
+      function selesai() {
+        alert("Desain selesai! Kamu akan diarahkan...");
+        window.location.href = "selesai.html";
+      }
+    </script>
+    <script>
+      window.addEventListener("DOMContentLoaded", () => {
+        const uploadedImage = localStorage.getItem("uploadedImage");
+        if (uploadedImage) {
+          document.getElementById("uploadedImagePreview").src = uploadedImage;
+        } else {
+          alert("Tidak ada gambar diunggah.");
+        }
+      });
+    </script>
+  </body>
+</html>
