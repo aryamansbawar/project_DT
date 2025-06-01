@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Form CustomExpress</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&family=Port+Lligat+Slab&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: "Poppins", sans-serif;
+      background-color: #f8f8f8;
+    }
+
+    .container {
+      border: 2px solid #e91e63; /* magenta */
+      padding: 40px;
+      max-width: 1000px;
+      margin: 30px auto;
+      background-color: #fff;
+    }
+
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .header h1 {
+      font-family: "Port Lligat Slab", serif;
+      font-size: 24px;
+      color: #000;
+    }
+
+    .icons {
+      display: flex;
+      justify-content: center;
+      margin: 40px 0;
+      gap: 50px;
+    }
+
+    .icons img {
+      width: 50px;
+      height: 50px;
+    }
+
+    .form-container {
+      background-color: #f8bbd0; /* light magenta */
+      padding: 40px;
+      border-radius: 5px;
+      display: flex;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+
+    .form-group {
+      flex: 1;
+      min-width: 200px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 10px;
+      font-weight: bold;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 20px;
+      border: none;
+      border-radius: 4px;
+    }
+
+    .buttons {
+      margin-top: 30px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .btn {
+      padding: 10px 20px;
+      font-weight: bold;
+      border: none;
+      border-radius: 3px;
+      cursor: pointer;
+    }
+
+    .btn-kembali {
+      background-color: #e91e63; /* magenta */
+      color: #fff;
+    }
+
+    .btn-logout {
+      background-color: #ad1457; /* dark magenta */
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>CustomExpress</h1>
+    </div>
+
+    <div class="icons">
+      <img src="https://img.icons8.com/ios-filled/50/card-in-use.png" alt="Icon 1">
+      <img src="https://img.icons8.com/ios-filled/50/toolbox.png" alt="Icon 2">
+      <img src="https://img.icons8.com/ios-filled/50/delivery.png" alt="Icon 3">
+      <img src="https://img.icons8.com/ios-filled/50/checklist.png" alt="Icon 4">
+    </div>
+
+    <div class="form-container">
+      <div class="form-group">
+        <label for="nama">Nama :</label>
+        <input type="text" id="nama" name="nama">
+
+        <label for="telp">No Telp :</label>
+        <input type="text" id="telp" name="telp">
+
+        <label for="alamat">Alamat lengkap :</label>
+        <input type="text" id="alamat" name="alamat">
+      </div>
+
+      <div class="form-group">
+        <label for="patokan">Patokan :</label>
+        <input type="text" id="patokan" name="patokan">
+
+        <label for="email">Email :</label>
+        <input type="email" id="email" name="email">
+      </div>
+    </div>
+
+    <div class="buttons">
+      <button class="btn btn-kembali">Kembali</button>
+      <button class="btn btn-logout">LOGOUT</button>
+    </div>
+  </div>
+</body>
+</html>
